@@ -1,6 +1,5 @@
 body {
-    background:black;
-    background-image: url("./background.jpg");
+    background:grey;
     background-size: cover;
     font-family:sans-serif;
   }
@@ -22,7 +21,7 @@ body {
 
 /* Header: just the title of the game */
   #header {
-    font-size:40px;
+    font-size: 40px;
     text-align:center;
     text-transform:uppercase;
     font-weight:bold;
@@ -58,7 +57,7 @@ body {
     justify-content: center;
     align-items: center;
   }
-    #lapis, #papyrus, #scallpulus {
+    #rock, #paper, #scissors {
       height:100px;
       width: 130px;
       margin:0 5px;

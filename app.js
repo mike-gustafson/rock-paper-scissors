@@ -1,16 +1,16 @@
 //------------------------------------------------------------------------Begin Variable Declaration
 
-const choices = ['lapis','papyrus','scallpulus'];
+const choices = ['rock','paper','scissors'];
 
-const resultMsgs = {
+const resultMsgOptions = {
     win: 'You win',
     lose: 'You lose',
     tie: "It's a tie"
 };
 const resultsObject = {
-    lapis:{scallpulus:true, papyrus:false},
-    scallpulus:{papyrus:true, lapis:false},
-    papyrus:{lapis:true, scallpulus:false}
+    rock:{scissors:true, paper:false},
+    scissors:{paper:true, rock:false},
+    paper:{rock:true, scissors:false}
 };
 
 let playerWins = "";
@@ -23,25 +23,25 @@ let computerPoints = 0;
 let computerChoice = choices[Math.floor(Math.random()*choices.length)];
 
 const buttonReset = document.querySelector("#reset");
-const buttonLapis = document.querySelector("#lapis");
-const buttonPapyrus = document.querySelector("#papyrus");
+const buttonRock = document.querySelector("#rock");
+const buttonPaper = document.querySelector("#paper");
 const elementResults = document.getElementById("results");
-const buttonScallpulus = document.querySelector("#scallpulus");
+const buttonScissors = document.querySelector("#scissors");
 
 //------------------------------------------------------------------------Begin Function Declarations
 // function - Logic for rock paper scissors
 function compareChoices(){
     if (playerChoice===computerChoice){                                 // checks for tie
-        resultsMsg = resultMsgs.tie;                                    // assign tie string if round is a tie
+        resultsMsg = resultMsgOptions.tie;                              // assign tie string if round is a tie
         tiePoints++;                                                    // increments counter for tied games
     } else {                                                            // if not a tie
-        playerWins = resultsObject[playerChoice][computerChoice];       // set result to boolean value from messages object
+        playerWins = resultsObject[playerChoice][computerChoice];       // set result to boolean value from results object
         if (playerWins){                                                // if result = true (win)
             playerPoints++;                                             // awards player a point
-            resultsMsg = resultMsgs.win;                                // assign win string
+            resultsMsg = resultMsgOptions.win;                          // assign win string
         }else{                                                          // if result = false (loss)
             computerPoints++;                                           // award computer a point
-            resultsMsg = resultMsgs.lose;                               // assign lose string
+            resultsMsg = resultMsgOptions.lose;                         // assign lose string
         }
     }
     outputToHTML();                                                     // calls outputToHTML function (updates results element)
@@ -59,21 +59,20 @@ function outputToHTML(){
     Computer chose ${computerChoice}`
 }
 
-function resetGame(){
+// function - reseet game to starting state
+const resetGame = () => {
     round = 1;
     tiePoints=0;
     playerPoints=0;
     computerPoints=0;
-
     resultsMsg = "";
     playerChoice = "to reset the game";
-    computerChoice = "violence";
-
+    computerChoice = "to acquiesce";
     outputToHTML();
 }
 
 //------------------------------------------------------------------------Begin User Interaction
-buttonLapis.addEventListener("click", ()=>{playerChoice=choices[0]; compareChoices()});     // inputs player choice as lapis, runs functions and returns HTML results
-buttonPapyrus.addEventListener("click", ()=>{playerChoice=choices[1]; compareChoices()});   // inputs player choice as papyrus, runs functions and returns HTML results
-buttonScallpulus.addEventListener("click", ()=>{playerChoice=choices[2]; compareChoices()});// inputs player choice as scallpulus, runs functions and returns HTML results
-buttonReset.addEventListener("click", ()=>{resetGame()});                                   // resets the game if reset button is clicked
+buttonRock.addEventListener("click", ()=>{playerChoice=choices[0]; compareChoices()});    // inputs player choice as lapis, runs functions and returns HTML results
+buttonPaper.addEventListener("click", ()=>{playerChoice=choices[1]; compareChoices()});   // inputs player choice as papyrus, runs functions and returns HTML results
+buttonScissors.addEventListener("click", ()=>{playerChoice=choices[2]; compareChoices()});// inputs player choice as scallpulus, runs functions and returns HTML results
+buttonReset.addEventListener("click", resetGame);                                         // resets the game if reset button is clicked
