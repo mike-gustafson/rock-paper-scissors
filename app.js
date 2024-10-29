@@ -30,14 +30,14 @@ const buttonScissors = document.querySelector("#scissors");
 function compareChoices(){
     if (playerChoice===computerChoice){                                // checks for tie
         resultMsg = resultMsgOptions.tie;                              // assign tie string if round is a tie
-        tieCount++;                                                   // increments counter for tied games
+        tieCount++;                                                    // increments counter for tied games
     } else {                                                           // if not a tie
         playerWins = outcomeMatrix[playerChoice][computerChoice];      // set result to boolean value from results object
         if (playerWins){                                               // if result = true (win)
-            playerScore++;                                            // awards player a point
+            playerScore++;                                             // awards player a point
             resultMsg = resultMsgOptions.win;                          // assign win string
         }else{                                                         // if result = false (loss)
-            computerScore++;                                          // award computer a point
+            computerScore++;                                           // award computer a point
             resultMsg = resultMsgOptions.lose;                         // assign lose string
         }
     }
